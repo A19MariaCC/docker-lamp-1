@@ -3,15 +3,15 @@ function get_conexion(){
     try{
         //1. Crear la conexión
         @$conexion = new mysqli('db', 'root', 'test');
-        //echo 'Conexión correcta<br/>';
         return $conexion;
+        //Captura de excepciones
     }catch(mysqli_sql_exception $e){
         //2. Gestionar el error si lo hubiera
         echo "Error en la conexión: ".$e->getMessage();
     }
 
 }
-
+//Función para crear la base de datos
 function creaDB(){
     try{
         $conexion = get_conexion();
@@ -40,6 +40,7 @@ function creaDB(){
     }
 }
 
+//Función para crear la tabla usuarios
 function createTablaUsuarios(){
     try{
         $conexion = get_conexion();
@@ -77,6 +78,7 @@ function createTablaUsuarios(){
     }
 }
 
+//Función para crear la tabla tareas
 function createTablaTareas(){
     try{
         $conexion = get_conexion();
@@ -114,6 +116,7 @@ function createTablaTareas(){
     }
 }
 
+//Función para listar los usuarios
 function listaUsuarios(){
     try{
         $conexion = get_conexion();
@@ -138,6 +141,7 @@ function listaUsuarios(){
     }
 }
 
+//Función para insertar una nueva tarea
 function nuevaTarea($titulo, $descripcion, $estado, $idUsuario){
     try{
         $conexion = get_conexion();
@@ -164,6 +168,7 @@ function nuevaTarea($titulo, $descripcion, $estado, $idUsuario){
 
 }
 
+//Función para listar la lista de tareas
 function listaTareas(){
     try{
         $conexion = get_conexion();
@@ -188,6 +193,7 @@ function listaTareas(){
     }
 }
 
+//Función para seleccionar una tarea por id
 function get_tarea($id){
     try{
         $conexion = get_conexion();
@@ -195,7 +201,7 @@ function get_tarea($id){
         if($conexion->connect_error){
             throw new Exception("Error: " . $conexion->connect_error);
         }
-        $sql = "SELECT t.id, t.descripcion, t.estado, t.titulo, u.username, t.id_usuario 
+        $sql = "SELECT t.id, t.titulo, t.descripcion, t.estado, u.username, t.id_usuario 
                     FROM tareas t JOIN usuarios u ON t.id_usuario = u.id
                     WHERE t.id = ?";
 
@@ -213,11 +219,13 @@ function get_tarea($id){
         return [false, $e->getMessage()];
         
     }finally{
+        $stmt->close();
         $conexion->close();  
     }       
     
 }
 
+//Función para borrar una tarea
 function borraTarea($id){
     try{
         $conexion = get_conexion();
@@ -241,6 +249,7 @@ function borraTarea($id){
     }
 }
 
+//Función para actualizar una tarea
 function actualizaTarea($id, $titulo, $descripcion, $estado, $id_usuario){
     try{
         $conexion = get_conexion();

@@ -19,7 +19,7 @@
                 </div>
                 <div class="container justify-content-between">
                     <?php
-                      // si los datos han sido enviados a través de POST
+                      // comprobamos si los datos han sido enviados a través del método POST
                 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["enviar"])){
                     
                     if (isset($_POST['username']) && isset($_POST['nombre']) && isset($_POST['apellidos']) && isset($_POST['contrasena'])){
@@ -50,7 +50,7 @@
                         $error = true;
                         echo '<div class="alert alert-danger" role="alert">El campo apellidos es obligatorio y debe contener al menos 3 caracteres.</div>';
                     }
-                    
+                    //verificar contraseña
                     if (!validarCampoTexto($contrasena)){
                         $error = true;
                         echo '<div class="alert alert-danger" role="alert">El campo contraseña es obligatorio y debe contener al menos 3 caracteres.</div>';

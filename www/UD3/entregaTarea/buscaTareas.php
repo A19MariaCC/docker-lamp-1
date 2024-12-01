@@ -24,7 +24,7 @@
                         require_once('pdo.php');
                         $usuarios = listaUsuarios();
                     ?>
-                    <form method="POST" action="tareas.php">
+                    <form method="POST" action="tareas.php"><!--Este formulario no se procesa, pues no he sabido cómo resolver esta parte -->
                         <select class="form-select" id="usuario" name="usuario" required>
                             <option value="" selected disabled>Seleccione el usuario</option>
                                 <?php 

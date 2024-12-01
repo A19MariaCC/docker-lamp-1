@@ -1,5 +1,5 @@
 <?php
-
+//Función para obtener la conexión
 function conexion_PDO(){
     $servername = "db";
     $username = "root";
@@ -15,6 +15,8 @@ function conexion_PDO(){
         echo "Fallo en conexión: ".$e->getMessage();
     }
 }
+
+//Función para registrar un usuario en la base de datos
 function dar_alta_usuario($username, $nombre, $apellidos, $contrasena){
     try{
         $conPDO = conexion_PDO();
@@ -36,6 +38,7 @@ function dar_alta_usuario($username, $nombre, $apellidos, $contrasena){
     }
 }
 
+//Función para listar usuarios
 function listaUsuarios(){
     try{
         $conPDO = conexion_PDO();
@@ -78,6 +81,7 @@ function listaUsuarios(){
     }    
 }
 
+//Función para actualizar datos de un usuario
 function actualizaUsuario($id, $usuario, $nombre, $apellidos, $contrasena){
     try{
         $conPDO = conexion_PDO();
@@ -102,6 +106,7 @@ function actualizaUsuario($id, $usuario, $nombre, $apellidos, $contrasena){
     }
 }
 
+//Función para borrar un usuario
 function borraUsuario($id){
     try{
         $conPDO = conexion_PDO();
@@ -129,6 +134,7 @@ function borraUsuario($id){
     }
 }
 
+//Función para obtener datos de una tarea
 function buscaTarea($id){
     try{
         $conPDO = conexion_PDO();
@@ -153,6 +159,5 @@ function buscaTarea($id){
     $conPDO = null;   
     }  
 }
-
 
 ?>

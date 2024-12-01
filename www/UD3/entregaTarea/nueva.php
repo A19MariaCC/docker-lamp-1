@@ -29,9 +29,9 @@
                             $titulo = $_POST['titulo'];
                             $descripcion = $_POST['descripcion'];
                             $estado = $_POST['estado'];
-                            $idUsuario = $_POST['usuario'];
+                            $idUsuario = $_POST['id_usuario'];
                             
-                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        if ($_SERVER["REQUEST_METHOD"] == "POST") { //Comprobamos si los datos se reciben por el método post
                             if(!esCampoValido($titulo)){
                                 $valido = false;
                                 echo '<div class="alert alert-danger" role="alert">El titulo no es válido</div>';
@@ -56,7 +56,10 @@
                         }
                         ?>
                 </div>
-                </main>
+                <div class="container justify-content-between mb-2">
+                    <a class="btn btn-success btn-sm" href="index.php" role="button">Volver</a>
+                </div>
+            </main>
         </div>
     </div>
     <!--footer-->

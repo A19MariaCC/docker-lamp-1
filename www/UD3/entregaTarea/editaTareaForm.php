@@ -20,6 +20,7 @@
                     <h2>Actualizar tarea</h2>
                 </div>
                 <div class="container justify-content-between">
+                <form method="POST" action="editaTarea.php" class="mb-2 w-50">
                 <?php
                     require_once('mysqli.php');
                         //Obtener id de $_GET
@@ -27,52 +28,63 @@
                             $id = $_GET['id'];
                             $resultado = get_tarea($id);
                             //echo var_dump($resultado);
-                            if($resultado){
+                            if($resultado && count($resultado) > 0){
                                 $tarea = $resultado;
                                 $titulo = $tarea['titulo'];
                                 $descripcion = $tarea['descripcion'];
                                 $estado = $tarea['estado'];
                                 $id_usuario = $tarea['id_usuario'];
                     ?>
-                     <form method="POST" action="editaTarea.php">
+                     
                         <input type="hidden" name="id" value="<?php echo $id ?>"/>
-                        <label for="titulo">Título</label><br>
-                        <input type="text" id="titulo" name="titulo" value="<?php echo isset($titulo)? htmlspecialchars($titulo) : ''?>"><br><br>
-                        <label for="descripcion">Descripción</label><br>
-                        <input type="text" id="descripcion" name="descripcion" value="<?php echo isset($descripcion)? htmlspecialchars($descripcion) : ''?>"><br><br>
-                        <label for="estado">Estado</label><br>
-                        <select class="form-select" id="estado" name="estado" required <?php echo isset($estado)?>>
-                            <option value="<?= $tarea['estado']; ?>" <?php echo isset($estado) ? 'selected' : '' ?>>
-                                <?= htmlspecialchars($tarea['estado']); ?>
-                            </option>
-                            <?php 
-                                require_once('utils.php');
-                                $estados = listaEstado();
-                                foreach($estados as $estado){
-                                    echo "<option>$estado</option>";
-                                }
-                            ?>
-                        </select><br>
-                        <select class="form-select" id="usuario" name="usuario" required>
-                            <option value="" disabled>Seleccione un usuario</option>
-                            <?php
-                                $usuarios = listaUsuarios();
-                                foreach($usuarios as $usuario){
-                            ?>
-                            <option value="<?=$usuario['id']; ?>"<?php echo ($usuario['id'] == $id_usuario) ? 'selected' : '';?>>
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label">Título</label><br>
+                            <input type="text" id="titulo" name="titulo" value="<?php echo isset($titulo)? htmlspecialchars($titulo) : ''?>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label><br>
+                            <input type="text" id="descripcion" name="descripcion" value="<?php echo isset($descripcion)? htmlspecialchars($descripcion) : ''?>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="estado" class="form-label">Estado</label><br>
+                            <select class="form-select" id="estado" name="estado" required>
+                                <option disabled value="" >Seleccione un estado</option>
+                                <?php 
+                                    require_once('utils.php');
+                                    $estados = listaEstado();
+                                    foreach($estados as $estado){
+                                        echo "<option>$estado</option>";
+                                    }
+                                ?>
+                            </select>
+                        </div> 
+                        <div class="mb-3"> 
+                            <label for="id_usuario" class="form-label">Usuario</label>     
+                            <select class="form-select" id="id_usuario" name="id_usuario" required>
+                                <option value="" disabled>Seleccione un usuario</option>
+                                <?php
+                                    $usuarios = listaUsuarios();
+                                    foreach($usuarios as $usuario):
+                                ?>
+                                <option value="<?=$usuario['id']; ?>"<?php echo ($usuario['id'] == $id_usuario) ? 'selected' : '';?>>
                                 <?= htmlspecialchars($usuario['username']); ?>
-                            </option>
+                                </option>
                             <?php
-                                }
+                                endforeach;
                             ?>
-                        </select><br>
+                            </select>
+                        </div>
                         <input type="submit" name="actualizar" value="Actualizar">
                    
                         <?php
                            
+                            }else{
+                                echo '<div class="alert alert-danger" role="alert">No se pudo recuperar la información de la tarea.</div>';
                             }
+                        }else{
+                            echo '<div class="alert alert-warning" role="alert">No se pudo procesar el contenido del formulario.</div>';
                         }
-                    ?>
+                        ?>
                     </form>
                 </div>
             </main>

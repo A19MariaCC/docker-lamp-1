@@ -29,7 +29,7 @@
                                 $titulo = $_POST["titulo"];
                                 $descripcion = $_POST["descripcion"];
                                 $estado = $_POST["estado"];
-                                $id_usuario = $_POST["usuario"];
+                                $id_usuario = $_POST["id_usuario"];
 
                                 require_once('utils.php');
                                 $error = false;

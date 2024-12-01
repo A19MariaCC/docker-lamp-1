@@ -22,26 +22,21 @@
                 <div class="container justify-content-between">
                     <?php
 
-                        require_once('mysqli.php');
-                        if(!empty($_GET)){
-                            $id = $_GET['id'];
-                            $resultado = get_tarea($id);
-                            var_dump($resultado);
-                            if(!empty($id) && $resultado[0]){
-                                $resultado = borraTarea($resultado[0]['id']);
-                                if($resultado[0]){
-                                    echo '<div class="alert alert-success" role="alert">Tarea borrada correctamente.</div>';
-                                }else{
-                                    echo '<div class="alert alert-danger" role="alert">No se pudo borrar la tarea.</div>';
-                                }
+                        if(!empty($_GET) && isset($_GET['id'])){
+                            require_once('mysqli.php');
+                            if(borraTarea($_GET['id'])){
+                                echo '<div class="alert alert-success" role="alert">Tarea borrada correctamente.</div>';
                             }else{
-                                echo '<div class="alert alert-danger" role="alert">No se pudo recuperar la información de la tarea.</div>';
+                                echo '<div class="alert alert-danger" role="alert">No se pudo borrar la tarea.</div>';
                             }
                         }else{
-                            echo '<div class="alert alert-danger" role="alert">Debes acceder a través del listado de tareas.</div>';
+                            echo '<div class="alert alert-warning" role="alert">No se puede localizar ninguna tarea.</div>';
                         }
-                        ?>
-
+                           
+                    ?>
+                 <div class="container justify-content-between mb-2">
+                    <a class="btn btn-info btn-sm" href="tareas.php" role="button">Volver</a>
+                </div>
                 </div>
             </main>
         </div>

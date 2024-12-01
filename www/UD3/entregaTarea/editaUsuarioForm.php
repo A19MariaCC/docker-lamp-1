@@ -46,13 +46,16 @@
                         <input type="text" id="username" name="username" value="<?php echo isset($username) ? htmlspecialchars($username) : ''?>"><br><br>
                         <label for="contrasena">Contraseña</label><br>
                         <input type="password" id="contrasena" name="contrasena" value="<?php echo isset($contrasena) ? htmlspecialchars($contrasena) : ''?>"><br><br>
-                        <input type="submit" name="actualizar" value="Actualizar">
+                        <input type="submit" name="actualizar" class="btn btn-success btn-sm" value="Actualizar">
                    
                     <?php
                             }
                         }
                     ?>
                     </form>
+                </div>
+                <div class="container justify-content-between mb-2">
+                    <a class="btn btn-info btn-sm" href="listaUsuarios.php" role="button">Volver</a>
                 </div>
             </main>
         </div>

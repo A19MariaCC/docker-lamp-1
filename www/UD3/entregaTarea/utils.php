@@ -57,10 +57,11 @@
             return false;
         }
     }
+        */
 
     function listaEstado(){
         return ['Pendiente', 'En proceso', 'Completada'];
     }
-        */
+        
 
 ?>

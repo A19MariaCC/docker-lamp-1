@@ -49,8 +49,6 @@
                                 echo '<div class="alert alert-danger" role="alert">El campo username es obligatorio.</div>';
                             }
                             if(!$error){
-                                
-
                                 $resultado = actualizaUsuario($id, filtrarCampo($usuario), filtrarCampo($nombre), filtrarCampo($apellidos), filtrarCampo($contrasena));
                                 if($resultado[0]){
                                     echo '<div class="alert alert-success" role="alert">Usuario actualizado correctamente.</div>';

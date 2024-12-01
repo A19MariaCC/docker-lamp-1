@@ -20,8 +20,8 @@
                     <h2>Inicio</h2>
                 </div>
                 <div class="container justify-content-between">
-                    <p>Mi nombre es Mar, vivo en Santiago de Compostela y trabajo en un laboratorio medioambiental desde hace dos años en la empresa Veolia. Anteriormente estuve 
-                        trabajando en el departamento de desarrollo de negocio de la unidad de ingeniería medioambiental del mismo grupo empresarial.
+                    <p>Mi nombre es Mar, vivo en Santiago de Compostela. Llevo trabajando desde el 2011 en el grupo empresarial Veolia. Durante varios años trabajé 
+                        en la unidad de desarrollo de negocio y actualmente trabajo en el laboratorio medioambiental del grupo.
                     </p>
                 </div>
             </main>
